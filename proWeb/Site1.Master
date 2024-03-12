@@ -1,0 +1,93 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="proWeb.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+       
+        h1 {
+            background-color: cyan;
+            text-align: center;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            
+        }
+        div {
+            align-items:center;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 100px; /* Ajusta el ancho según tus necesidades */
+            text-align: right;
+            margin-right: 10px;
+        }
+        .form-group input[type="text"] {
+            width: 200px; /* Ajusta el ancho según tus necesidades */
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px; /* Espacio entre los botones */
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <p>
+                    Erardo Aldana Pessoa - DNI: 26960240P</p>
+                <p>
+                    Liu Yangfeng -
+                </p>
+            </asp:ContentPlaceHolder>
+        </div>
+        <h1>HADA P3 - CURSO 2024/25</h1>
+        <h2>Products management</h2>
+        <div class="form-group">
+            <label for="TextBox1">Code </label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="TextBox2">Name</label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="TextBox3">Amount</label>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="DropDownList1">Category </label>
+            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            </asp:DropDownList>
+
+        </div>
+        <div class="form-group">
+            <label for="TextBox5">Price</label>
+            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="TextBox5">Creation Date</label>
+            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+        </div>
+        <div class="button-container">
+            <asp:Button ID="Button2" runat="server" Text="Create" OnClick="Button2_Click" />
+            <asp:Button ID="Button3" runat="server" Text="Update" />
+            <asp:Button ID="Button4" runat="server" Text="Delete" />
+            <asp:Button ID="Button5" runat="server" Text="Read" />
+            <asp:Button ID="Button6" runat="server" Text="Read First" />
+            <asp:Button ID="Button1" runat="server" Text="Read Prev" />
+            <asp:Button ID="Button7" runat="server" Text="Read Next" />
+        </div>
+    </form>
+</body>
+</html>
