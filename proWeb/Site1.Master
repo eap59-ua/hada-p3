@@ -47,8 +47,7 @@
                 <p>
                     Erardo Aldana Pessoa - DNI: 26960240P</p>
                 <p>
-                    Liu Yangfeng -
-                </p>
+                    Liu Yangfeng -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NIE: Y1893839X</p>
             </asp:ContentPlaceHolder>
         </div>
         <h1>HADA P3 - CURSO 2024/25</h1>
@@ -68,6 +67,10 @@
         <div class="form-group">
             <label for="DropDownList1">Category </label>
             <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem>Computing</asp:ListItem>
+                <asp:ListItem>Telephony</asp:ListItem>
+                <asp:ListItem>Gaming</asp:ListItem>
+                <asp:ListItem>Home appliances</asp:ListItem>
             </asp:DropDownList>
 
         </div>
@@ -86,7 +89,7 @@
             <asp:Button ID="Button5" runat="server" Text="Read" />
             <asp:Button ID="Button6" runat="server" Text="Read First" />
             <asp:Button ID="Button1" runat="server" Text="Read Prev" />
-            <asp:Button ID="Button7" runat="server" Text="Read Next" />
+            <asp:Button ID="Button7" runat="server" Text="Read Next" Width="116px" />
         </div>
     </form>
 </body>
