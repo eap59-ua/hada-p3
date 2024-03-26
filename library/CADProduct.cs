@@ -17,7 +17,6 @@ namespace library
             constring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
 
-        [Obsolete]
         public bool Create(ENProduct eNProduct)
         {
             try
@@ -104,19 +103,19 @@ namespace library
                 return false;
             }
         }
-        public bool read(ENProduct eNProduct)
+        public bool Read(ENProduct eNProduct)
         {
             return false;
         }
-        public bool readFirst(ENProduct eNProduct)
+        public bool ReadFirst(ENProduct eNProduct)
         {
             return false;
         }
-        public bool readNext(ENProduct eNProduct)
+        public bool ReadNext(ENProduct eNProduct)
         {
             return false;
         }
-        public bool readPrev(ENProduct eNProduct)
+        public bool ReadPrev(ENProduct eNProduct)
         {
             return false;
         }

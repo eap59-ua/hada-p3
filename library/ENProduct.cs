@@ -62,27 +62,89 @@ namespace library
         }
         public bool Update()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.Update(this);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occured: {ex.Message}");
+                return false;
+            }
+            
         }
-        public bool delete()
+        public bool Delete()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.Delete(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
         }
         public bool Read()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.Read(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
         }
         public bool readFirst()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.ReadFirst(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
         }
         public bool readNext()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.ReadNext(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
         }
         public bool readPrev()
         {
-            return false;
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.ReadPrev(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
         }
     }
 }
