@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace library
 {
@@ -24,11 +26,16 @@ namespace library
         public DateTime CreationDate { get { return _creationDate; } set { _creationDate = value; } }
 
         // methods
-        ENProduct()
+        public ENProduct()
         {
-            ;
+            Code = string.Empty;
+            Name = string.Empty;
+            Amount = 0;
+            Price = 0.0f;
+            Category = 0;
+            CreationDate = DateTime.Now;
         }
-        ENProduct(string code, string name, int amount, float price, int category, DateTime creationDate)
+        public ENProduct(string code, string name, int amount, float price, int category, DateTime creationDate)
         {
             Code = code;
             Name = name;
@@ -38,31 +45,42 @@ namespace library
             CreationDate = creationDate;
         }
 
-        bool Create()
+        public bool Create()
+        {
+            try
+            {
+                CADProduct cADProduct = new CADProduct();
+                bool result = cADProduct.Create(this);
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occured, {ex.Message}");
+                return false;
+            }
+        }
+        public bool Update()
         {
             return false;
         }
-        bool Update()
+        public bool delete()
         {
             return false;
         }
-        bool delete()
+        public bool Read()
         {
             return false;
         }
-        bool Read()
+        public bool readFirst()
         {
             return false;
         }
-        bool readFirst()
+        public bool readNext()
         {
             return false;
         }
-        bool readNext()
-        {
-            return false;
-        }
-        bool readPrev()
+        public bool readPrev()
         {
             return false;
         }

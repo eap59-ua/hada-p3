@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace library
 {
-    class CADProduct
+    public class CADProduct
     {
         private string constring { get; set; }
         public CADProduct()
@@ -18,7 +18,7 @@ namespace library
         }
 
         [Obsolete]
-        bool Create(ENProduct eNProduct)
+        public bool Create(ENProduct eNProduct)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace library
                 return false;
             }
         }
-        bool Update(ENProduct eNProduct)
+        public bool Update(ENProduct eNProduct)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace library
                 return false;
             }
         }
-        bool Delete(ENProduct eNProduct)
+        public bool Delete(ENProduct eNProduct)
         {
             try
             {
@@ -104,19 +104,19 @@ namespace library
                 return false;
             }
         }
-        bool read(ENProduct eNProduct)
+        public bool read(ENProduct eNProduct)
         {
             return false;
         }
-        bool readFirst(ENProduct eNProduct)
+        public bool readFirst(ENProduct eNProduct)
         {
             return false;
         }
-        bool readNext(ENProduct eNProduct)
+        public bool readNext(ENProduct eNProduct)
         {
             return false;
         }
-        bool readPrev(ENProduct eNProduct)
+        public bool readPrev(ENProduct eNProduct)
         {
             return false;
         }
