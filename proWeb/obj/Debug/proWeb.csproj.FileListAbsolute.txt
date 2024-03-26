@@ -116,3 +116,7 @@ C:\Users\EPS\Source\Repos\hada-p3\proWeb\obj\Debug\proWeb.csproj.CoreCompileInpu
 C:\Users\EPS\Source\Repos\hada-p3\proWeb\obj\Debug\proWeb.csproj.CopyComplete
 C:\Users\EPS\Source\Repos\hada-p3\proWeb\obj\Debug\proWeb.dll
 C:\Users\EPS\Source\Repos\hada-p3\proWeb\obj\Debug\proWeb.pdb
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\bin\EntityFramework.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\bin\EntityFramework.SqlServer.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\bin\EntityFramework.xml
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\bin\EntityFramework.SqlServer.xml
