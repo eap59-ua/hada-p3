@@ -9,10 +9,11 @@ namespace library
 {
     class CADProduct
     {
-        private string Constring { get; set; }
-        CADProduct()
+        private string constring { get; set; }
+        public CADProduct()
         {
-            
+            // Obtener la cadena de conexión desde el archivo Web.config
+            constring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
         bool Create(ENProduct eNProduct)
         {
