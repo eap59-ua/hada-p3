@@ -27,7 +27,8 @@ namespace library
             Amount = 0;
             Price = 0.0f;
             Category = 0;
-            CreationDate = DateTime.Now;
+
+            CreationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
         }
         public ENProduct(string code, string name, int amount, float price, int category, DateTime creationDate)
         {
@@ -37,7 +38,9 @@ namespace library
             Price = price;
             // para ajustar con ID de la tabla categories
             Category = category + 1;
-            CreationDate = creationDate;
+            
+            CreationDate = DateTime.Parse(creationDate.ToString());
+            
         }
 
         public bool Create()

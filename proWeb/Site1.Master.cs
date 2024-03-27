@@ -26,24 +26,25 @@ namespace proWeb
         {
             string code = Code.Text;
             string name = Name.Text;
-            int amount = int.Parse(Amount.Text);
-            float price = float.Parse(Price.Text);
             int category = Category.SelectedIndex;
-            DateTime creationDate = DateTime.Now;
+
+            // evitar problema de vacio y pasar argumento
+            int amount = 0;
+            bool amount_tryParse = int.TryParse(Amount.Text, out amount);
+            float price = 0;
+            bool price_tryParse = float.TryParse(Price.Text, out price);
             
-            if (!string.IsNullOrEmpty(Creation_Date.Text))
-            {
-                creationDate = DateTime.Parse(Creation_Date.Text);
-            }
+            DateTime creationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
+            bool creationDate_tryParse = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out creationDate);
+            
 
             product = new ENProduct(code, name, amount, price, category, creationDate);
 
             bool result = product.Create();
-            string msg = result ? "success" : "failed";
-            Page.Controls.Add(new LiteralControl("alert('" + msg + "')"));
 
-
-
+            string msg = result ? "Create operation has sucess" : "Create operation has failed";
+            string script = "<script>alert('" + msg + "')</script>";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
 
         }
 
