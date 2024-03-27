@@ -54,7 +54,7 @@
         <h2>Products management</h2>
         <div class="form-group">
             <label for="TextBox1">Code </label>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         </div>
         <div class="form-group">
             <label for="TextBox2">Name</label>
@@ -83,13 +83,13 @@
             <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
         </div>
         <div class="button-container">
-            <asp:Button ID="Button2" runat="server" Text="Create" OnClick="Button2_Click" />
-            <asp:Button ID="Button3" runat="server" Text="Update" />
-            <asp:Button ID="Button4" runat="server" Text="Delete" />
-            <asp:Button ID="Button5" runat="server" Text="Read" />
-            <asp:Button ID="Button6" runat="server" Text="Read First" />
-            <asp:Button ID="Button1" runat="server" Text="Read Prev" />
-            <asp:Button ID="Button7" runat="server" Text="Read Next" Width="116px" />
+            <asp:Button ID="Create" runat="server" Text="Create" OnClick="Create_" />
+            <asp:Button ID="Update" runat="server" Text="Update" OnClick="Update_" />
+            <asp:Button ID="Delete" runat="server" Text="Delete" OnClick="Delete_" />
+            <asp:Button ID="Read" runat="server" Text="Read" OnClick="Read_" />
+            <asp:Button ID="ReadFirst" runat="server" Text="Read First" OnClick="ReadFirst_" />
+            <asp:Button ID="ReadPrev" runat="server" Text="Read Prev" OnClick="ReadPrev_" />
+            <asp:Button ID="ReadNext" runat="server" Text="Read Next" Width="116px" OnClick="ReadNext_" />
         </div>
     </form>
 </body>
