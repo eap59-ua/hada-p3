@@ -4,34 +4,37 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
-       
         h1 {
             background-color: cyan;
             text-align: center;
             padding-top: 5%;
             padding-bottom: 5%;
-            
         }
+
         div {
-            align-items:center;
+            align-items: center;
         }
+
         .form-group {
             margin-bottom: 10px;
         }
-        .form-group label {
-            display: inline-block;
-            width: 100px; /* Ajusta el ancho según tus necesidades */
-            text-align: right;
-            margin-right: 10px;
-        }
-        .form-group input[type="text"] {
-            width: 200px; /* Ajusta el ancho según tus necesidades */
-        }
+
+            .form-group label {
+                display: inline-block;
+                width: 161px; /* Ajusta el ancho según tus necesidades */
+                text-align: right;
+                margin-right: 10px;
+            }
+
+            .form-group input[type="text"] {
+                width: 200px; /* Ajusta el ancho según tus necesidades */
+            }
+
         .button-container {
             display: flex;
             justify-content: flex-start;
@@ -45,12 +48,14 @@
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 <p>
-                    Erardo Aldana Pessoa - DNI: 26960240P</p>
+                    Erardo Aldana Pessoa - DNI: 26960240P
+                </p>
                 <p>
-                    Liu Yangfeng         - NIE: Y1893839X</p>
+                    <a href="Site1.Master">Site1.Master</a> Liu Yangfeng         - NIE: Y1893839X
+                </p>
             </asp:ContentPlaceHolder>
         </div>
-        <h1>HADA P3 - CURSO 2024/25</h1>
+        <h1>HADA P3 - CURSO 2024/25DA P3 - CURSO 2024/25</h1>
         <h2>Products management</h2>
         <div class="form-group">
             <label for="Code">Code </label>
@@ -78,13 +83,14 @@
             <asp:TextBox ID="Price" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="Creation_Date">Creation Date</label>
+            <label for="Price">Creation Date</label>
             <asp:TextBox ID="Creation_Date" runat="server"></asp:TextBox>
+
         </div>
         <div class="button-container">
             <asp:Button ID="Create" runat="server" Text="Create" OnClick="Create_" />
             <asp:Button ID="Update" runat="server" Text="Update" OnClick="Update_" />
-            <asp:Button ID="Delete" runat="server" Text="Delete" OnClick="Delete_" />
+            <asp:Button ID="Delete" runat="server" Text="Delete" OnClick="Delete_" Width="82px" />
             <asp:Button ID="Read" runat="server" Text="Read" OnClick="Read_" />
             <asp:Button ID="ReadFirst" runat="server" Text="Read First" OnClick="ReadFirst_" />
             <asp:Button ID="ReadPrev" runat="server" Text="Read Prev" OnClick="ReadPrev_" />

@@ -59,7 +59,31 @@ namespace proWeb
 
         protected void Read_(object sender, EventArgs e)
         {
+            product = new ENProduct();
+            product.Code = Code.Text;
+            bool result = product.Read();
 
+            string msg;
+            string script;
+
+            if (result)
+            {
+                Name.Text = product.Name;
+                Amount.Text = product.Amount.ToString();
+                Price.Text = product.Price.ToString();
+                Category.SelectedIndex = product.Category;
+                Creation_Date.Text = product.CreationDate.ToString();
+
+                msg = "Read operation has sucess";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
+            else
+            {
+                msg = "Read operation has failed";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
         }
 
         protected void ReadFirst_(object sender, EventArgs e)
@@ -104,7 +128,6 @@ namespace proWeb
         protected void Category_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine("hello");
-
         }
     }
 }

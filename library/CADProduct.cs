@@ -102,7 +102,49 @@ namespace library
         }
         public bool Read(ENProduct eNProduct)
         {
-            return false;
+            try
+            {
+                using (SqlConnection sql = new SqlConnection())
+                {
+                    sql.ConnectionString = constring;
+                    sql.Open();
+                    string query = "Select * From Products Where code ="+ eNProduct.Code;
+
+                    using (SqlCommand sqlCMD = new SqlCommand(query, sql))
+                    {
+                        SqlDataReader reader = sqlCMD.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            eNProduct.Code = reader["code"].ToString();
+                            eNProduct.Name = reader["name"].ToString();
+                            eNProduct.Amount = (int)reader["amount"];
+
+                            if (float.TryParse(reader["price"].ToString(), out float price))
+                            {
+                                eNProduct.Price = price;
+                            }
+                            else
+                            {
+                                eNProduct.Price = 0.0f;
+
+                            }
+
+                            eNProduct.Category = (int)reader["category"];
+                            eNProduct.CreationDate = (DateTime)reader["creationDate"];
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
         }
         public bool ReadFirst(ENProduct eNProduct)
         {
@@ -122,7 +164,7 @@ namespace library
                             eNProduct.Code = reader["code"].ToString();
                             eNProduct.Name = reader["name"].ToString();
                             eNProduct.Amount = (int)reader["amount"];
-                            
+
                             if (float.TryParse(reader["price"].ToString(), out float price))
                             {
                                 eNProduct.Price = price;
