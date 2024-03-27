@@ -35,7 +35,8 @@ namespace library
             Name = name;
             Amount = amount;
             Price = price;
-            Category = category;
+            // para ajustar con ID de la tabla categories
+            Category = category + 1;
             CreationDate = creationDate;
         }
 

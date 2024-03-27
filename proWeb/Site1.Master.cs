@@ -1,6 +1,6 @@
 ﻿using library;
 using System;
-
+using System.Web.UI;
 
 namespace proWeb
 {
@@ -24,7 +24,27 @@ namespace proWeb
 
         protected void Create_(object sender, EventArgs e)
         {
-            Console.WriteLine("hello world");
+            string code = Code.Text;
+            string name = Name.Text;
+            int amount = int.Parse(Amount.Text);
+            float price = float.Parse(Price.Text);
+            int category = Category.SelectedIndex;
+            DateTime creationDate = DateTime.Now;
+            
+            if (!string.IsNullOrEmpty(Creation_Date.Text))
+            {
+                creationDate = DateTime.Parse(Creation_Date.Text);
+            }
+
+            product = new ENProduct(code, name, amount, price, category, creationDate);
+
+            bool result = product.Create();
+            string msg = result ? "success" : "failed";
+            Page.Controls.Add(new LiteralControl("alert('" + msg + "')"));
+
+
+
+
         }
 
         protected void Update_(object sender, EventArgs e)

@@ -9,3 +9,4 @@ D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\bin\Debug\library.p
 D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.csproj.CoreCompileInputs.cache
 D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.dll
 D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.pdb
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.csproj.AssemblyReference.cache
