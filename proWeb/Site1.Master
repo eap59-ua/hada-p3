@@ -65,9 +65,13 @@
             <asp:TextBox ID="Amount" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="Category">Category </label>
-            <asp:TextBox ID="Category" runat="server"></asp:TextBox>
-
+            <label for="DropDownList1">Category </label>
+            <asp:DropDownList ID="Category" runat="server" OnSelectedIndexChanged="Category_SelectedIndexChanged">
+                <asp:ListItem>Computing</asp:ListItem>
+                <asp:ListItem>Telephony</asp:ListItem>
+                <asp:ListItem>Gaming</asp:ListItem>
+                <asp:ListItem>Home appliances</asp:ListItem>
+            </asp:DropDownList>
         </div>
         <div class="form-group">
             <label for="Price">Price</label>

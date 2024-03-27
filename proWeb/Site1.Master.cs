@@ -11,11 +11,15 @@ namespace proWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            
             // cuando f5
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 product = new ENProduct();
             }
+            
+            
         }
 
         protected void Create_(object sender, EventArgs e)
@@ -50,6 +54,11 @@ namespace proWeb
 
         protected void ReadNext_(object sender, EventArgs e)
         {
+
+        }
+        protected void Category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("hello");
 
         }
     }
