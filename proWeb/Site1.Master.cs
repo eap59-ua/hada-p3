@@ -11,15 +11,11 @@ namespace proWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            
             // cuando f5
             if (!IsPostBack)
             {
                 product = new ENProduct();
             }
-            
-            
         }
 
         protected void Create_(object sender, EventArgs e)
@@ -29,11 +25,9 @@ namespace proWeb
             int category = Category.SelectedIndex;
 
             // evitar problema de vacio y pasar argumento
-            int amount = 0;
-            bool amount_tryParse = int.TryParse(Amount.Text, out amount);
-            float price = 0;
-            bool price_tryParse = float.TryParse(Price.Text, out price);
-            
+            bool amount_tryParse = int.TryParse(Amount.Text, out int amount);
+            bool price_tryParse = float.TryParse(Price.Text, out float price);
+
             DateTime creationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
             bool creationDate_tryParse = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out creationDate);
             
@@ -55,7 +49,12 @@ namespace proWeb
 
         protected void Delete_(object sender, EventArgs e)
         {
-
+            product = new ENProduct();
+            product.Code = Code.Text;
+            bool result = product.Delete();
+            string msg = result ? "Delete operation has sucess" : "Delete operation has failed";
+            string script = "<script>alert('" + msg + "')</script>";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
         }
 
         protected void Read_(object sender, EventArgs e)
