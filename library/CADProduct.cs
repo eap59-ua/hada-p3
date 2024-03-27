@@ -108,7 +108,7 @@ namespace library
                 {
                     sql.ConnectionString = constring;
                     sql.Open();
-                    string query = "Select * From Products Where code ="+ eNProduct.Code;
+                    string query = "Select * From Products Where code =" + eNProduct.Code;
 
                     using (SqlCommand sqlCMD = new SqlCommand(query, sql))
                     {
@@ -195,11 +195,94 @@ namespace library
         }
         public bool ReadNext(ENProduct eNProduct)
         {
-            return false;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    con.Open();
+
+                    string query = $"SELECT TOP 1 * FROM Products WHERE id > (SELECT id FROM Products WHERE code = {eNProduct.Code})";
+
+                    using (SqlCommand sqlCMD = new SqlCommand(query, con))
+                    {
+                        SqlDataReader reader = sqlCMD.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            eNProduct.Code = reader["code"].ToString();
+                            eNProduct.Name = reader["name"].ToString();
+                            eNProduct.Amount = (int)reader["amount"];
+                            if (float.TryParse(reader["price"].ToString(), out float price))
+                            {
+                                eNProduct.Price = price;
+                            }
+                            else
+                            {
+                                eNProduct.Price = 0.0f;
+
+                            }
+                            eNProduct.Category = (int)reader["category"];
+                            eNProduct.CreationDate = (DateTime)reader["creationDate"];
+
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
         }
         public bool ReadPrev(ENProduct eNProduct)
         {
-            return false;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    con.Open();
+
+                    string query = $"SELECT TOP 1 * FROM Products WHERE id < (SELECT id FROM Products WHERE code = {eNProduct.Code})";
+                    using (SqlCommand sqlCMD = new SqlCommand(query, con))
+                    {
+                        SqlDataReader reader = sqlCMD.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            eNProduct.Code = reader["code"].ToString();
+                            eNProduct.Name = reader["name"].ToString();
+                            eNProduct.Amount = (int)reader["amount"];
+                            if (float.TryParse(reader["price"].ToString(), out float price))
+                            {
+                                eNProduct.Price = price;
+                            }
+                            else
+                            {
+                                eNProduct.Price = 0.0f;
+
+                            }
+                            eNProduct.Category = (int)reader["category"];
+                            eNProduct.CreationDate = (DateTime)reader["creationDate"];
+
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
         }
 
     }

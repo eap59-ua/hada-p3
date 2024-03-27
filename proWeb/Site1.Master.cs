@@ -31,7 +31,6 @@ namespace proWeb
             DateTime creationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
             bool creationDate_tryParse = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out creationDate);
             
-
             product = new ENProduct(code, name, amount, price, category, creationDate);
 
             bool result = product.Create();
@@ -118,12 +117,62 @@ namespace proWeb
 
         protected void ReadPrev_(object sender, EventArgs e)
         {
+            product = new ENProduct();
+            product.Code = Code.Text;
+            bool result = product.ReadPrev();
 
+            string msg;
+            string script;
+
+            if (result)
+            {
+                Code.Text = product.Code;
+                Name.Text = product.Name;
+                Amount.Text = product.Amount.ToString();
+                Price.Text = product.Price.ToString();
+                Category.SelectedIndex = product.Category;
+                Creation_Date.Text = product.CreationDate.ToString();
+
+                msg = "Read prev operation has sucess";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
+            else
+            {
+                msg = "Read prev operation has failed";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
         }
 
         protected void ReadNext_(object sender, EventArgs e)
         {
+            product = new ENProduct();
+            product.Code = Code.Text;
+            bool result = product.ReadNext();
 
+            string msg;
+            string script;
+
+            if (result)
+            {
+                Code.Text = product.Code;
+                Name.Text = product.Name;
+                Amount.Text = product.Amount.ToString();
+                Price.Text = product.Price.ToString();
+                Category.SelectedIndex = product.Category;
+                Creation_Date.Text = product.CreationDate.ToString();
+
+                msg = "Read next operation has sucess";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
+            else
+            {
+                msg = "Read next operation has failed";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
         }
         protected void Category_SelectedIndexChanged(object sender, EventArgs e)
         {
