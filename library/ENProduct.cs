@@ -102,7 +102,7 @@ namespace library
                 return false;
             }
         }
-        public bool readFirst()
+        public bool ReadFirst()
         {
             try
             {
@@ -116,7 +116,7 @@ namespace library
                 return false;
             }
         }
-        public bool readNext()
+        public bool ReadNext()
         {
             try
             {
@@ -130,7 +130,7 @@ namespace library
                 return false;
             }
         }
-        public bool readPrev()
+        public bool ReadPrev()
         {
             try
             {

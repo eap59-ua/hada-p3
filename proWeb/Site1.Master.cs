@@ -64,7 +64,32 @@ namespace proWeb
 
         protected void ReadFirst_(object sender, EventArgs e)
         {
+            product = new ENProduct();
+            bool result = product.ReadFirst();
 
+            string msg;
+            string script;
+
+            if (result)
+            {
+                Code.Text = product.Code;
+                Name.Text = product.Name;
+                Amount.Text = product.Amount.ToString();
+                Price.Text = product.Price.ToString();
+                Category.SelectedIndex = product.Category;
+                Creation_Date.Text = product.CreationDate.ToString();
+
+                msg = "Read first operation has sucess";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
+            else
+            {
+                msg = "Read first operation has failed";
+                script = "<script>alert('" + msg + "')</script>";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
+            }
+            
         }
 
         protected void ReadPrev_(object sender, EventArgs e)
