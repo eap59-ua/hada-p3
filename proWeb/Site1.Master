@@ -47,40 +47,35 @@
                 <p>
                     Erardo Aldana Pessoa - DNI: 26960240P</p>
                 <p>
-                    Liu Yangfeng -&nbsp;&nbsp;&nbsp;&nbsp;NIE: Y1893839X</p>
+                    Liu Yangfeng         - NIE: Y1893839X</p>
             </asp:ContentPlaceHolder>
         </div>
         <h1>HADA P3 - CURSO 2024/25</h1>
         <h2>Products management</h2>
         <div class="form-group">
-            <label for="TextBox1">Code </label>
-            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+            <label for="Code">Code </label>
+            <asp:TextBox ID="Code" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="TextBox2">Name</label>
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <label for="Name">Name</label>
+            <asp:TextBox ID="Name" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="TextBox3">Amount</label>
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <label for="Amount">Amount</label>
+            <asp:TextBox ID="Amount" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="DropDownList1">Category </label>
-            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                <asp:ListItem>Computing</asp:ListItem>
-                <asp:ListItem>Telephony</asp:ListItem>
-                <asp:ListItem>Gaming</asp:ListItem>
-                <asp:ListItem>Home appliances</asp:ListItem>
-            </asp:DropDownList>
+            <label for="Category">Category </label>
+            <asp:TextBox ID="Category" runat="server"></asp:TextBox>
 
         </div>
         <div class="form-group">
-            <label for="TextBox5">Price</label>
-            <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            <label for="Price">Price</label>
+            <asp:TextBox ID="Price" runat="server"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label for="TextBox5">Creation Date</label>
-            <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+            <label for="Creation_Date">Creation Date</label>
+            <asp:TextBox ID="Creation_Date" runat="server"></asp:TextBox>
         </div>
         <div class="button-container">
             <asp:Button ID="Create" runat="server" Text="Create" OnClick="Create_" />
