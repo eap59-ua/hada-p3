@@ -49,23 +49,22 @@ namespace library
         {
             try
             {
-                using (SqlConnection sql = new SqlConnection(constring))
+                using (SqlConnection con = new SqlConnection(constring))
                 {
-                    sql.Open();
-                    string query = "UPDATE Products SET name = @name, amount = @amount, price = @price, category = @category, creationDate = @creationDate WHERE code = @code";
+                    con.Open();
 
-                    using (SqlCommand sqlCMD = new SqlCommand(query, sql))
+                    string query = "UPDATE Products SET name = @name, amount = @amount, price = @price, category = @category, creationDate = @creationDate WHERE code = @code";
+                    using (SqlCommand sqlCMD = new SqlCommand(query, con))
                     {
-                        sqlCMD.Parameters.AddWithValue("@code", eNProduct.Code);
                         sqlCMD.Parameters.AddWithValue("@name", eNProduct.Name);
                         sqlCMD.Parameters.AddWithValue("@amount", eNProduct.Amount);
                         sqlCMD.Parameters.AddWithValue("@price", eNProduct.Price);
                         sqlCMD.Parameters.AddWithValue("@category", eNProduct.Category);
-                        sqlCMD.Parameters.AddWithValue("@creationDate", eNProduct.CreationDate);
+                        sqlCMD.Parameters.AddWithValue("@creationDate", eNProduct.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        sqlCMD.Parameters.AddWithValue("@code", eNProduct.Code);
 
-                        int sucess_row = sqlCMD.ExecuteNonQuery();
-                        // si se actualizó al menos una fila
-                        return sucess_row > 0;
+                        int successRows = sqlCMD.ExecuteNonQuery();
+                        return successRows > 0;
                     }
                 }
             }

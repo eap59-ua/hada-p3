@@ -25,12 +25,11 @@ namespace proWeb
             int category = Category.SelectedIndex;
 
             // evitar problema de vacio y pasar argumento
-            bool amount_tryParse = int.TryParse(Amount.Text, out int amount);
-            bool price_tryParse = float.TryParse(Price.Text, out float price);
+            _ = int.TryParse(Amount.Text, out int amount);
+            _ = float.TryParse(Price.Text, out float price);
+            _ = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
+            _ = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out DateTime creationDate);
 
-            DateTime creationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
-            bool creationDate_tryParse = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out creationDate);
-            
             product = new ENProduct(code, name, amount, price, category, creationDate);
 
             bool result = product.Create();
@@ -43,7 +42,22 @@ namespace proWeb
 
         protected void Update_(object sender, EventArgs e)
         {
+            string code = Code.Text;
+            string name = Name.Text;
+            int category = Category.SelectedIndex;
 
+            // evitar problema de vacio y pasar argumento
+            _ = int.TryParse(Amount.Text, out int amount);
+            _ = float.TryParse(Price.Text, out float price);
+            _ = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
+            _ = DateTime.TryParse(DateTime.Now.ToString(("dd'/'MM'/'yyyy' 'HH':'mm':'ss")), out DateTime creationDate);
+
+            product = new ENProduct(code, name, amount, price, category, creationDate);
+
+            bool result = product.Update();
+            string msg = result ? "Update operation has sucess" : "Update operation has failed";
+            string script = "<script>alert('" + msg + "')</script>";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "", script);
         }
 
         protected void Delete_(object sender, EventArgs e)

@@ -4,6 +4,6 @@
 	- ID de la tabla Products se aumenta cada veces que ejecuta a Create. Cuando falla tambien se aumenta, no sé el el aumento es correcto or no. Hay que revisar
 	- Error cuando F5. Hay que arreglar en Site1.Master.cs
 	- Hay que completar mas cosas en metodos Page_loads de Site1.Master.CS
-
+	- Pag 13 de pdf no ha hecho aun. 
 2. Para consultar en el SQL
 	-select * from Products right join Categories on Categories.id = category order by creationDate;
