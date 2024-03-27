@@ -106,7 +106,27 @@ namespace library
         }
         public bool ReadFirst(ENProduct eNProduct)
         {
-            return false;
+            try
+            {
+                using (SqlConnection sql = new SqlConnection())
+                {
+                    sql.ConnectionString = constring;
+                    sql.Open();
+                    string query = "SELECT TOP 1 * FROM Products;";
+
+                    using (SqlCommand sqlCMD = new SqlCommand(query, sql))
+                    {
+                        int sucess_row = sqlCMD.ExecuteNonQuery();
+                        // si se insertó al menos una fila
+                        return sucess_row > 0;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
+                return false;
+            }
         }
         public bool ReadNext(ENProduct eNProduct)
         {
