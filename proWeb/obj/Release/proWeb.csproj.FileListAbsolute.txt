@@ -1,0 +1,2 @@
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\obj\Release\proWeb.csproj.AssemblyReference.cache
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\proWeb\obj\Release\proWeb.csproj.CoreCompileInputs.cache

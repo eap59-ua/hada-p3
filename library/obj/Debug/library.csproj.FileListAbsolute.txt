@@ -4,3 +4,8 @@ C:\Users\EPS\Source\Repos\hada-p3\library\obj\Debug\library.csproj.AssemblyRefer
 C:\Users\EPS\Source\Repos\hada-p3\library\obj\Debug\library.csproj.CoreCompileInputs.cache
 C:\Users\EPS\Source\Repos\hada-p3\library\obj\Debug\library.dll
 C:\Users\EPS\Source\Repos\hada-p3\library\obj\Debug\library.pdb
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\bin\Debug\library.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\bin\Debug\library.pdb
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.csproj.CoreCompileInputs.cache
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Debug\library.pdb

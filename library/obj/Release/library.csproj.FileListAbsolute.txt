@@ -1,0 +1,6 @@
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\bin\Release\library.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\bin\Release\library.pdb
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Release\library.csproj.AssemblyReference.cache
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Release\library.csproj.CoreCompileInputs.cache
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Release\library.dll
+D:\desktop\Universidad\2_curso\2_cuadri\HADA\hada-p3\library\obj\Release\library.pdb
