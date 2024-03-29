@@ -304,6 +304,12 @@ namespace proWeb
                 ShowMessage("Read next operation has failed.", MessageType.Error);
             }
         }
+        protected void Category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Aquí puedes escribir el código que deseas ejecutar cuando cambia la selección en el DropDownList
+            // Por ejemplo, podrías obtener el valor seleccionado y realizar alguna acción en función de ese valor
+        }
 
     }
+    
 }
