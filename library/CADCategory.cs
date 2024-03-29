@@ -1,56 +1,86 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace library
 {
     public class CADCategory
     {
-        // Cadena de conexión a la base de datos (debes configurarla según tu entorno)
-        private readonly string _connectionString;
+        private string constring { get; set; }
 
-        // Constructor que inicializa la cadena de conexión
-        public CADCategory(string connectionString)
+        public CADCategory()
         {
-            _connectionString = connectionString;
+            constring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
 
-        // Método para leer todas las categorías y devolverlas como una lista
+        // Método para leer una categoría por su ID
+        public bool Read(ENCategory en)
+        {
+            try
+            {
+                using (SqlConnection sql = new SqlConnection(constring))
+                {
+                    sql.Open();
+                    string query = "SELECT * FROM Categories WHERE id = @id";
+
+                    using (SqlCommand sqlCMD = new SqlCommand(query, sql))
+                    {
+                        sqlCMD.Parameters.AddWithValue("@id", en.Id);
+
+                        SqlDataReader reader = sqlCMD.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            en.Id = (int)reader["id"];
+                            en.Name = reader["name"].ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"An error ocurred: {ex.Message}");
+                return false;
+            }
+        }
+
+        // Método para leer todas las categorías
         public List<ENCategory> ReadAll()
         {
             List<ENCategory> categories = new List<ENCategory>();
 
             try
             {
-                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlConnection sql = new SqlConnection(constring))
                 {
-                    con.Open();
-                    string query = "SELECT id, name FROM Categories";
+                    sql.Open();
+                    string query = "SELECT * FROM Categories";
 
-                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    using (SqlCommand sqlCMD = new SqlCommand(query, sql))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        SqlDataReader reader = sqlCMD.ExecuteReader();
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                int id = Convert.ToInt32(reader["id"]);
-                                string name = reader["name"].ToString();
-
-                                ENCategory category = new ENCategory(id, name);
-                                categories.Add(category);
-                            }
+                            ENCategory category = new ENCategory();
+                            category.Id = (int)reader["id"];
+                            category.Name = reader["name"].ToString();
+                            categories.Add(category);
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine($"An error occurred while reading categories: {ex.Message}");
+                Console.WriteLine($"An error ocurred: {ex.Message}");
             }
 
             return categories;
         }
-
-        // Otros métodos según sea necesario
     }
 }

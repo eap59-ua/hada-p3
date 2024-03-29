@@ -1,6 +1,8 @@
 ﻿using library;
 using System;
+using System.Collections.Generic; // Necesario para utilizar List<T>
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace proWeb
 {
@@ -15,9 +17,19 @@ namespace proWeb
             if (!IsPostBack)
             {
                 product = new ENProduct();
+                LoadCategories();
             }
         }
+        protected void LoadCategories()
+        {
+            CADCategory cadCategory = new CADCategory();
+            List<ENCategory> categories = cadCategory.ReadAll();
 
+            foreach (ENCategory category in categories)
+            {
+                Category.Items.Add(new ListItem(category.Name, category.Id.ToString()));
+            }
+        }
         protected void Create_(object sender, EventArgs e)
         {
             string code = Code.Text.Trim();

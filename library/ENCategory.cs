@@ -4,30 +4,22 @@ namespace library
 {
     public class ENCategory
     {
-        // Atributos privados de la categoría
-        private int _id;
-        private string _name;
-
-        // Propiedades públicas para acceder a los atributos
-        public int Id { get { return _id; } set { _id = value; } }
-        public string Name { get { return _name; } set { _name = value; } }
+        // Propiedades de la categoría
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         // Constructor predeterminado
         public ENCategory()
         {
-            // Inicializar los atributos
-            _id = 0;
-            _name = string.Empty;
+            Id = 0;
+            Name = string.Empty;
         }
 
         // Constructor con parámetros
         public ENCategory(int id, string name)
         {
-            // Asignar los valores proporcionados a los atributos
-            _id = id;
-            _name = name;
+            Id = id;
+            Name = name;
         }
-
-        // Otros métodos según sea necesario
     }
 }
