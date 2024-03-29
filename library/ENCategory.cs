@@ -2,6 +2,7 @@
 
 namespace library
 {
+    //creacion de objetos category
     public class ENCategory
     {
         // Propiedades de la categoría
