@@ -1,6 +1,7 @@
 ﻿using library;
 using System;
 using System.Collections.Generic; // Necesario para utilizar List<T>
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,6 +11,7 @@ namespace proWeb
     public partial class Site1 : System.Web.UI.MasterPage
     {
         private ENProduct product;
+        private int categoryI;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +29,9 @@ namespace proWeb
 
             foreach (ENCategory category in categories)
             {
-                Category.Items.Add(new ListItem(category.Name, category.Id.ToString()));
+                // Restar 1 al ID antes de asignarlo como valor al ListItem
+              
+                Category.Items.Add(new ListItem(category.Name,category.Id.ToString()));
             }
         }
         protected void Create_(object sender, EventArgs e)
@@ -36,18 +40,22 @@ namespace proWeb
             string name = Name.Text.Trim();
             string amountStr = Amount.Text;
             string priceStr = Price.Text;
+            string creationDateStr = Creation_Date.Text; // Obtener la cadena de texto de la fecha de creación
+
+            // Obtener el índice seleccionado de la categoría
+            int category = Category.SelectedIndex;
 
             // Validación de restricciones
-            if (!ValidateInputs(code, name, amountStr, priceStr))
+            if (!ValidateInputs(code, name, amountStr, priceStr, creationDateStr, category)) // Pasar la cadena de texto de la fecha de creación a ValidateInputs
             {
                 return;
             }
 
-            // Obtener la fecha actual
-            DateTime creationDate = DateTime.Now;
+            // Convertir la cadena de texto de la fecha de creación a DateTime
+            DateTime creationDate = DateTime.ParseExact(creationDateStr, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
             // Crear el producto
-            product = new ENProduct(code, name, int.Parse(amountStr), float.Parse(priceStr), Category.SelectedIndex, creationDate);
+            product = new ENProduct(code, name, int.Parse(amountStr), float.Parse(priceStr), category+1, creationDate);
             bool result = product.Create();
 
             // Mostrar mensaje de éxito o error
@@ -67,14 +75,15 @@ namespace proWeb
                 ShowMessage("Create operation has failed.", MessageType.Error);
             }
         }
+
+
         //segun sea mensaje de error o no
         private enum MessageType
         {
             Error,
             Success
         }
-
-        private bool ValidateInputs(string code, string name, string amountStr, string priceStr)
+        private bool ValidateInputs(string code, string name, string amountStr, string priceStr, string creationDateStr, int category)
         {
             // Validar código
             if (string.IsNullOrEmpty(code) || code.Length > 16)
@@ -104,8 +113,24 @@ namespace proWeb
                 return false;
             }
 
+            // Validar formato de la fecha de creación
+            if (!DateTime.TryParseExact(creationDateStr, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
+            {
+                ShowMessage("Creation Date must follow the format dd/MM/yyyy HH:mm:ss.", MessageType.Error);
+                return false;
+            }
+
+            // Validar categoría
+            if (category < 0 || category > 3)
+            {
+                ShowMessage("Invalid category selection.", MessageType.Error);
+                return false;
+            }
+
             return true;
         }
+
+
 
         private void ShowMessage(string message, MessageType type)
         {
@@ -114,22 +139,39 @@ namespace proWeb
             ErrorLabel.Visible = true;
         }
 
-
-        // Método para realizar la operación de actualización
         protected void Update_(object sender, EventArgs e)
         {
             string code = Code.Text.Trim();
             string name = Name.Text.Trim();
-            int category = Category.SelectedIndex;
+            string amountStr = Amount.Text;
+            string priceStr = Price.Text;
+            string creationDateStr = Creation_Date.Text; // Obtener la fecha de creación del formulario
+            int categoryIndex = Category.SelectedIndex; // Obtener el índice de la categoría seleccionada
 
             // Validar las entradas del usuario
-            if (!ValidateInputs(code, name, Amount.Text, Price.Text))
+            if (!ValidateInputs(code, name, amountStr, priceStr, creationDateStr, categoryIndex))
             {
                 return; // No se procede si la validación falla
             }
 
+            // Convertir la cadena de fecha a DateTime
+            DateTime creationDate;
+            if (!DateTime.TryParseExact(creationDateStr, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out creationDate))
+            {
+                // No se pudo convertir la cadena de fecha correctamente, mostrar un mensaje de error
+                ShowMessage("Invalid creation date format.", MessageType.Error);
+                return;
+            }
+
+            // Convertir la cantidad y el precio a números enteros y flotantes respectivamente
+            if (!int.TryParse(amountStr, out int amount) || !float.TryParse(priceStr, out float price))
+            {
+                ShowMessage("Invalid amount or price format.", MessageType.Error);
+                return;
+            }
+
             // Crear objeto ENProduct con los datos ingresados
-            ENProduct product = new ENProduct(code, name, int.Parse(Amount.Text), float.Parse(Price.Text), category, DateTime.Now);
+            ENProduct product = new ENProduct(code, name, amount, price, categoryIndex+1, creationDate);
 
             // Realizar la operación de actualización
             bool result = product.Update();
@@ -138,6 +180,8 @@ namespace proWeb
             string msg = result ? "Update operation has succeeded." : "Update operation has failed.";
             ShowMessage(msg, result ? MessageType.Success : MessageType.Error);
         }
+
+
         // Método para realizar la operación de eliminación
         protected void Delete_(object sender, EventArgs e)
         {
@@ -306,8 +350,14 @@ namespace proWeb
         }
         protected void Category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Aquí puedes escribir el código que deseas ejecutar cuando cambia la selección en el DropDownList
-            // Por ejemplo, podrías obtener el valor seleccionado y realizar alguna acción en función de ese valor
+            // Obtener el nuevo valor seleccionado del DropDownList Category
+            int newCategory = Category.SelectedIndex;
+
+            // Actualizar la variable category con el nuevo valor seleccionado
+            categoryI = newCategory;
+
+            // Llamar al método Update_ para realizar la operación de actualización
+            Update_(sender, e);
         }
 
     }
