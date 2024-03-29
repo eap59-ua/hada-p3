@@ -2,24 +2,28 @@
 
 namespace library
 {
+    /// <summary>
+    /// Clase ENProduct: representa un producto y proporciona métodos para interactuar con la base de datos.
+    /// </summary>
     public class ENProduct
     {
-        // atribute
+        // Atributos privados
         private string _code;
         private string _name;
         private int _amount;
         private float _price;
         private int _category;
         private DateTime _creationDate;
-        // property
-        public string Code {get { return _code; }  set { _code = value; } } 
+
+        // Propiedades públicas con campo de respaldo
+        public string Code { get { return _code; } set { _code = value; } }
         public string Name { get { return _name; } set { _name = value; } }
         public int Amount { get { return _amount; } set { _amount = value; } }
         public float Price { get { return _price; } set { _price = value; } }
         public int Category { get { return _category; } set { _category = value; } }
         public DateTime CreationDate { get { return _creationDate; } set { _creationDate = value; } }
 
-        // methods
+        // Constructor predeterminado
         public ENProduct()
         {
             Code = string.Empty;
@@ -27,22 +31,24 @@ namespace library
             Amount = 0;
             Price = 0.0f;
             Category = 0;
-
-            CreationDate = DateTime.Parse(DateTime.Now.ToString("dd'/'MM'/'yyyy' 'HH':'mm':'ss"));
+            CreationDate = DateTime.Now;
         }
+
+        // Constructor con parámetros
         public ENProduct(string code, string name, int amount, float price, int category, DateTime creationDate)
         {
             Code = code;
             Name = name;
             Amount = amount;
             Price = price;
-            // para ajustar con ID de la tabla categories
-            Category = category + 1;
-            
-            CreationDate = DateTime.Parse(creationDate.ToString());
-            
+            Category = category;
+            CreationDate = creationDate;
         }
-
+        // Métodos de operaciones CRUD
+        /// <summary>
+        /// Guarda este producto en la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool Create()
         {
             try
@@ -54,10 +60,14 @@ namespace library
             catch (Exception ex)
             {
 
-                Console.WriteLine($"An error occured, {ex.Message}");
+                Console.WriteLine($"An error ocurred, {ex.Message}");
                 return false;
             }
         }
+        /// <summary>
+        /// Actualiza este producto en la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool Update()
         {
             try
@@ -69,11 +79,15 @@ namespace library
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occured: {ex.Message}");
+                Console.WriteLine($"An error ocurred: {ex.Message}");
                 return false;
             }
             
         }
+        /// <summary>
+        /// Borra este producto de la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool Delete()
         {
             try
@@ -88,6 +102,10 @@ namespace library
                 return false;
             }
         }
+        /// <summary>
+        /// Recupera el producto indicado de la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool Read()
         {
             try
@@ -102,6 +120,10 @@ namespace library
                 return false;
             }
         }
+        /// <summary>
+        /// Recupera solo el primer producto de la BD.
+        /// </summary>
+        /// <returns>True si la opsración fue exitosa, False si falló.</returns>
         public bool ReadFirst()
         {
             try
@@ -116,6 +138,10 @@ namespace library
                 return false;
             }
         }
+        /// <summary>
+        /// Recupera solo el producto siguiente al indicado de la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool ReadNext()
         {
             try
@@ -130,6 +156,10 @@ namespace library
                 return false;
             }
         }
+        /// <summary>
+        /// Recupera solo el producto anterior al indicado de la BD.
+        /// </summary>
+        /// <returns>True si la operación fue exitosa, False si falló.</returns>
         public bool ReadPrev()
         {
             try

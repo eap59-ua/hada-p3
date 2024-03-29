@@ -7,13 +7,14 @@ namespace library
 {
     public class CADProduct
     {
+        // cadena para la conexion, esta en web config
         private string constring { get; set; }
         public CADProduct()
         {
             // Obtener la cadena de conexión desde el archivo Web.config
             constring = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
-
+        // metodo para insertar los datos en products
         public bool Create(ENProduct eNProduct)
         {
             try
@@ -45,14 +46,16 @@ namespace library
                 return false;
             }
         }
+        //actualizar la tabla products
         public bool Update(ENProduct eNProduct)
         {
             try
             {
+                ///para conectarnos, deberemos de abrir la conexion
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-
+                    //la sentencia ssql necesaria: 
                     string query = "UPDATE Products SET name = @name, amount = @amount, price = @price, category = @category, creationDate = @creationDate WHERE code = @code";
                     using (SqlCommand sqlCMD = new SqlCommand(query, con))
                     {
@@ -74,6 +77,7 @@ namespace library
                 return false;
             }
         }
+        // borrar un producto 
         public bool Delete(ENProduct eNProduct)
         {
             try
@@ -94,23 +98,25 @@ namespace library
             }
             catch (SqlException ex)
             {
-
                 Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
                 return false;
             }
         }
+        // leer segun el codigo
         public bool Read(ENProduct eNProduct)
         {
             try
             {
-                using (SqlConnection sql = new SqlConnection())
+                using (SqlConnection sql = new SqlConnection(constring))
                 {
-                    sql.ConnectionString = constring;
                     sql.Open();
-                    string query = "Select * From Products Where code =" + eNProduct.Code;
+                    string query = "SELECT * FROM Products WHERE code = @code";
 
                     using (SqlCommand sqlCMD = new SqlCommand(query, sql))
                     {
+                        // Agregar el parámetro @code
+                        sqlCMD.Parameters.AddWithValue("@code", eNProduct.Code);
+
                         SqlDataReader reader = sqlCMD.ExecuteReader();
                         if (reader.Read())
                         {
@@ -125,7 +131,6 @@ namespace library
                             else
                             {
                                 eNProduct.Price = 0.0f;
-
                             }
 
                             eNProduct.Category = (int)reader["category"];
@@ -141,10 +146,12 @@ namespace library
             }
             catch (SqlException ex)
             {
+
                 Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
                 return false;
             }
         }
+        //readfirst, el primer elemento de la tabla
         public bool ReadFirst(ENProduct eNProduct)
         {
             try
@@ -162,7 +169,7 @@ namespace library
                         {
                             eNProduct.Code = reader["code"].ToString();
                             eNProduct.Name = reader["name"].ToString();
-                            eNProduct.Amount = (int)reader["amount"];
+                            eNProduct.Amount = Convert.ToInt32(reader["amount"]);
 
                             if (float.TryParse(reader["price"].ToString(), out float price))
                             {
@@ -192,6 +199,7 @@ namespace library
                 return false;
             }
         }
+        // leer el siguiente al dado
         public bool ReadNext(ENProduct eNProduct)
         {
             try
@@ -204,6 +212,7 @@ namespace library
 
                     using (SqlCommand sqlCMD = new SqlCommand(query, con))
                     {
+                        sqlCMD.Parameters.AddWithValue("@code", eNProduct.Code);
                         SqlDataReader reader = sqlCMD.ExecuteReader();
 
                         if (reader.Read())
@@ -238,6 +247,7 @@ namespace library
                 return false;
             }
         }
+        //devuelve el anterior al dado
         public bool ReadPrev(ENProduct eNProduct)
         {
             try
@@ -246,9 +256,11 @@ namespace library
                 {
                     con.Open();
 
-                    string query = $"SELECT TOP 1 * FROM Products WHERE id < (SELECT id FROM Products WHERE code = {eNProduct.Code})";
+                    string query = $"SELECT TOP 1 * FROM Products WHERE id < (SELECT id FROM Products WHERE code = @code) ORDER BY id DESC";
+
                     using (SqlCommand sqlCMD = new SqlCommand(query, con))
                     {
+                        sqlCMD.Parameters.AddWithValue("@code", eNProduct.Code);
                         SqlDataReader reader = sqlCMD.ExecuteReader();
 
                         if (reader.Read())
@@ -263,7 +275,6 @@ namespace library
                             else
                             {
                                 eNProduct.Price = 0.0f;
-
                             }
                             eNProduct.Category = (int)reader["category"];
                             eNProduct.CreationDate = (DateTime)reader["creationDate"];
@@ -283,6 +294,5 @@ namespace library
                 return false;
             }
         }
-
     }
 }

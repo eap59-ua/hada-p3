@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>HADA P3 2024/2025 </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
@@ -55,7 +55,8 @@
                 </p>
             </asp:ContentPlaceHolder>
         </div>
-        <h1>HADA P3 - CURSO 2024/25DA P3 - CURSO 2024/25</h1>
+        <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        <h1>HADA P3 - CURSO 2024/25</h1>
         <h2>Products management</h2>
         <div class="form-group">
             <label for="Code">Code </label>
